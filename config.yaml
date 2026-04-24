@@ -1,0 +1,9 @@
+paths:
+  input_dir: "data/input"
+  output_dir: "data/output"
+  historical_data: "data/output/westmarket.xlsx"
+
+email:
+  sender: "pipeline@example.com"
+  recipients: ["stakeholders@example.com", "manager@example.com"]
+  subject_template: "Daily Healthcare Claims Auto-Adjudication Report - {date}"
