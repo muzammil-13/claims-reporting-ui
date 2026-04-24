@@ -13,7 +13,7 @@ def export_reports(df, summaries, config):
     paths = {}
     
     # 1. New Daily/YTD Report
-    ytd_filename = f"Report_{timestamp}.xlsx"
+    ytd_filename = f"YTD_{timestamp}.xlsx"
     ytd_path = os.path.join(output_dir, ytd_filename)
     
     with pd.ExcelWriter(ytd_path, engine='openpyxl') as writer:
@@ -24,7 +24,12 @@ def export_reports(df, summaries, config):
     
     # 2. Update Historical Dataset (Westmarket)
     historical_path = config['paths'].get('historical_data', os.path.join(output_dir, "westmarket.xlsx"))
-    current_date = datetime.now().strftime('%Y-%m-%d')
+    historical_sheet = 'westmarket'
+    if 'ProcessDate' in df.columns:
+        latest_date = pd.to_datetime(df['ProcessDate']).max()
+        current_date = latest_date.strftime('%Y-%m-%d')
+    else:
+        current_date = datetime.now().strftime('%Y-%m-%d')
     new_row = pd.DataFrame([{
         'Date': current_date,
         'Total_Claims': summaries['total_claims'],
@@ -32,11 +37,15 @@ def export_reports(df, summaries, config):
     }])
     
     if os.path.exists(historical_path):
-        existing_df = pd.read_excel(historical_path)
+        try:
+            existing_df = pd.read_excel(historical_path, sheet_name=historical_sheet)
+        except ValueError:
+            existing_df = pd.read_excel(historical_path)
         updated_df = pd.concat([existing_df, new_row], ignore_index=True)
     else:
         updated_df = new_row
         
-    updated_df.to_excel(historical_path, index=False)
+    with pd.ExcelWriter(historical_path, engine='openpyxl') as writer:
+        updated_df.to_excel(writer, sheet_name=historical_sheet, index=False)
     paths['Historical Data (westmarket.xlsx)'] = historical_path
     return paths
