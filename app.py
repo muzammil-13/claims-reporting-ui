@@ -89,8 +89,8 @@ if uploaded_file is not None:
                 
                 if st.button("Simulate Send Email"):
                 # Render HTML email preview
-                with st.expander("View HTML Email Preview", expanded=True):
-                    components.html(email_content, height=450, scrolling=True)
+                    with st.expander("View HTML Email Preview", expanded=True):
+                        components.html(email_content, height=450, scrolling=True)
                 
                 st.info("💡 Set environment variable `SEND_EMAIL=true` to send real emails via Outlook.")
                 

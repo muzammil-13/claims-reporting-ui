@@ -3,7 +3,10 @@ __pycache__/
 *.py[cod]
 *venv/
 .env
-src/__pycache__
+automation/__pycache__
+pipeline/__pycache__
+
+
 
 # # Data files (Ensure raw MBU files, CSV, and Excel reports are not committed)
 # *.csv

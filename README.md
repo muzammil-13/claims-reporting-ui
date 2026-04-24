@@ -1,7 +1,6 @@
+# 🏥 Healthcare Claims Reporting Pipeline UI
 
-# 🏥 Healthcare Claims Reporting Pipeline
-
-**Automating Auto-Adjudication (AA) Reporting from Raw Claims Data to Shareable Insights**
+**Automating Auto-Adjudication (AA) Reporting from Raw Claims Data to Shareable Insights via an Interactive UI**
 
 ---
 
@@ -38,7 +37,7 @@ This leads to:
 This project rebuilds the workflow as a  **structured data pipeline** :
 
 ```text
-Mainframe Job (Simulated)
+User Uploads File (Simulated Mainframe Extract) via Streamlit UI
         ↓
 Data Ingestion
         ↓
@@ -57,7 +56,13 @@ Email Automation (Link-Based)
 
 ## ⚙️ Key Features
 
-### 📥 Data Ingestion
+### 🖥️ Interactive UI (Streamlit)
+
+* Drag-and-drop file uploading for simulated datasets
+* Real-time pipeline execution and metrics visualization
+* In-app HTML email preview
+
+### Data Ingestion
 
 * Simulates mainframe dataset extraction using structured input files
 * Supports CSV/TXT formats
@@ -77,7 +82,6 @@ Email Automation (Link-Based)
 * Generates:
   * MTD (Month-to-Date) metrics
   * LOB-wise summaries
-  * State-wise comparisons
 
 ### 📤 Report Generation
 
@@ -110,7 +114,7 @@ healthcare-claims-reporting-pipeline/
 ├── automation/
 │   ├── email.py            # Email generation (link-based)
 │
-├── run_pipeline.py         # Entry point
+├── app.py                  # Streamlit UI Entry Point
 ├── config.yaml             # Configurations
 ├── progress_log.md         # Development tracking
 └── README.md
@@ -146,7 +150,7 @@ data/input/
 ### 4. Run the Pipeline
 
 ```bash
-python run_pipeline.py
+streamlit run app.py
 ```
 
 ---
@@ -155,9 +159,10 @@ python run_pipeline.py
 
 The pipeline generates:
 
-* 📄 `mtd_report.xlsx`
-* 📊 Aggregated AA metrics (LOB / State)
-* 📬 Email-ready summary content
+* � `Report_<timestamp>.xlsx` (Daily/YTD report containing raw data and segment summaries)
+* 📄 `westmarket.xlsx` (Updated historical dataset with daily metrics)
+* 📊 Aggregated AA metrics (LOB)
+* � Email-ready summary content
 
 ---
 
