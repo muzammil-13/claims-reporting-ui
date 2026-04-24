@@ -127,8 +127,8 @@ healthcare-claims-reporting-pipeline/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/muzammil-13/healthcare-claims-reporting-pipeline.git
-cd healthcare-claims-reporting-pipeline
+git clone https://github.com/muzammil-13/claims-reporting-ui.git
+cd claims-reporting-ui
 ```
 
 ### 2. Install Dependencies

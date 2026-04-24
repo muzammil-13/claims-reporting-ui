@@ -1,18 +1,20 @@
 healthcare-claims-reporting-pipeline/
 
-│
 ├── data/
-│   ├── raw/
-│   ├── processed/
+│   ├── input/              # Simulated mainframe input
+│   ├── output/             # Generated reports
 │
-├── src/
-│   ├── ingestion.py
-│   ├── processing.py
-│   ├── metrics.py
-│   ├── validation.py
-│   ├── utils.py
+├── pipeline/
+│   ├── ingest.py           # Data loading
+│   ├── validate.py         # Data checks
+│   ├── transform.py        # AA logic
+│   ├── aggregate.py        # Metrics computation
+│   ├── export.py           # Report generation
 │
-├── main.py
-├── config.py
-├── requirements.txt
-├── README.md
+├── automation/
+│   ├── email.py            # Email generation (link-based)
+│
+├── app.py                  # Streamlit UI Entry Point
+├── config.yaml             # Configurations
+├── progress_log.md         # Development tracking
+└── README.md
