@@ -61,16 +61,27 @@ Include screenshots or a GIF here to show the UI flow and output.
 * GIF: report preview and email-ready output
 ![1777176277842](image/README/1777176277842.gif)
 
-> If you want, add real screenshots or a short animated GIF in this section.
 
 ---
 
 ## How to Run
 
+### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/muzammil-13/claims-reporting-ui.git
 cd claims-reporting-ui
+```
+
+### 2. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+### 3. Start the App
+
+```bash
 streamlit run app.py
 ```
 
