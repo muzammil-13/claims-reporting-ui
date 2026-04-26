@@ -1,203 +1,100 @@
-# 🏥 Healthcare Claims Reporting Pipeline UI
+# 🏥 Claims Reporting UI
 
-**Automating Auto-Adjudication (AA) Reporting from Raw Claims Data to Shareable Insights via an Interactive UI**
+**Problem:** AA reporting is manual, slow, decision-heavy.
 
----
-
-## 🚀 Overview
-
-This project transforms a **manual, error-prone healthcare claims reporting workflow** into a  **modular, reproducible data pipeline** .
-
-It simulates an enterprise environment where claims data originates from mainframe systems and is processed into  **Auto-Adjudication (AA) metrics** , enabling faster and more reliable reporting.
-
-> Designed and built during an IBM CIC internship to mirror real production workflows in claims processing systems.
+This repository showcases a Streamlit-based UI that turns a fragmented claims reporting process into a simpler, more intuitive workflow.
 
 ---
 
-## 🎯 Problem Statement
+## Problem
 
-In traditional enterprise workflows:
+The existing AA reporting process is:
 
-* Claims data is generated via **mainframe batch jobs**
-* Data is extracted manually via **TSO commands + Outlook attachments**
-* Reports are created using **ad-hoc scripts and Excel workflows**
-* Email reporting is **manual and inconsistent**
+* Manual
+* Slow
+* Dependent on Excel cleanup and human decisions
 
-This leads to:
-
-* ❌ Repetitive manual effort
-* ❌ High risk of human error
-* ❌ Lack of reproducibility
-* ❌ No clear pipeline structure
+Teams are forced to move from JCL extracts into Excel, clean the data, email reports, and store results on SharePoint.
 
 ---
 
-## 💡 Solution
-
-This project rebuilds the workflow as a  **structured data pipeline** :
+## Current Workflow
 
 ```text
-User Uploads File (Simulated Mainframe Extract) via Streamlit UI
-        ↓
-Data Ingestion
-        ↓
-Validation Layer
-        ↓
-Transformation (AA Logic)
-        ↓
-Aggregation (MTD / LOB / State)
-        ↓
-Report Generation
-        ↓
-Email Automation (Link-Based)
+JCL → Excel → cleanup → email → SharePoint
 ```
+
+This flow creates friction because each step requires manual work, decision making, and file handoffs.
 
 ---
 
-## ⚙️ Key Features
+## Solution
 
-### 🖥️ Interactive UI (Streamlit)
+This project delivers a UI-driven workflow that simplifies interpretation and reduces friction.
 
-* Drag-and-drop file uploading for simulated datasets
-* Real-time pipeline execution and metrics visualization
-* In-app HTML email preview
+Key improvements:
 
-### Data Ingestion
-
-* Simulates mainframe dataset extraction using structured input files
-* Supports CSV/TXT formats
-
-### ✅ Data Validation
-
-* Ensures latest data (date checks)
-* Schema validation for consistency
-
-### 🔄 Transformation Engine
-
-* Processes claims data using **pandas**
-* Implements Auto-Adjudication (AA) logic
-
-### 📊 Aggregation Layer
-
-* Generates:
-  * MTD (Month-to-Date) metrics
-  * LOB-wise summaries
-
-### 📤 Report Generation
-
-* Outputs clean Excel reports
-* Dashboard-ready tabular formats
-
-### 📬 Email Automation (Simulated)
-
-* Generates email-ready content
-* Uses **link-based reporting** (aligned with SharePoint workflows)
+* Centralized report upload and execution in a Streamlit app
+* Automated data ingestion, validation, and AA transformation
+* Clear metrics and summaries for faster review
+* Email-ready output and SharePoint-friendly reporting
 
 ---
 
-## 🧱 Project Structure
+## Impact
 
-```bash
-healthcare-claims-reporting-pipeline/
-
-├── data/
-│   ├── input/              # Simulated mainframe input
-│   ├── output/             # Generated reports
-│
-├── pipeline/
-│   ├── ingest.py           # Data loading
-│   ├── validate.py         # Data checks
-│   ├── transform.py        # AA logic
-│   ├── aggregate.py        # Metrics computation
-│   ├── export.py           # Report generation
-│
-├── automation/
-│   ├── email.py            # Email generation (link-based)
-│
-├── app.py                  # Streamlit UI Entry Point
-├── config.yaml             # Configurations
-├── progress_log.md         # Development tracking
-└── README.md
-```
+* ✅ Faster decisions
+* ✅ Less manual Excel work
+* ✅ Reduced human error
+* ✅ More consistent reporting
 
 ---
 
-## ▶️ Getting Started
+## Demo
 
-### 1. Clone the Repository
+Include screenshots or a GIF here to show the UI flow and output.
+
+* Screenshot: input upload screen
+![input upload screen](image/README/input_upload_screen-Healthcare-Claims-Pipeline.png)
+* Screenshot: AA metric summary
+![AA metric summary](image/README/AA_metric_summary-Healthcare-Claims-Pipeline.png)
+* GIF: report preview and email-ready output
+![1777176277842](image/README/1777176277842.gif)
+
+> If you want, add real screenshots or a short animated GIF in this section.
+
+---
+
+## How to Run
 
 ```bash
-git clone https://github.com/muzammil-13/healthcare-claims-reporting-pipeline.git
-cd healthcare-claims-reporting-pipeline
-```
-
-### 2. Install Dependencies
-
-```bash
+git clone https://github.com/muzammil-13/claims-reporting-ui.git
+cd claims-reporting-ui
 pip install -r requirements.txt
-```
-
-### 3. Add Input Data
-
-Place your sample dataset inside:
-
-```bash
-data/input/
-```
-
----
-
-### 4. Run the Pipeline
-
-```bash
 streamlit run app.py
 ```
 
 ---
 
-## 📊 Sample Output
+## What This Project Includes
 
-The pipeline generates:
-
-* � `Report_<timestamp>.xlsx` (Daily/YTD report containing raw data and segment summaries)
-* 📄 `westmarket.xlsx` (Updated historical dataset with daily metrics)
-* 📊 Aggregated AA metrics (LOB)
-* � Email-ready summary content
-
----
-
-## 🧠 Design Decisions
-
-### Why Modular Pipeline?
-
-* Improves readability and maintainability
-* Aligns with real-world data engineering systems
-
-### Why Simulate Mainframe?
-
-* Direct access is restricted
-* Simulation enables reproducibility
-
-### Why Link-Based Email?
-
-* Enterprise systems use **SharePoint instead of attachments**
-* Avoids versioning conflicts
+* `app.py` — Streamlit UI entry point
+* `pipeline/ingest.py` — data loading
+* `pipeline/validate.py` — data checks and schema validation
+* `pipeline/transform.py` — AA transformation logic
+* `pipeline/aggregate.py` — metrics aggregation
+* `pipeline/export.py` — report generation
+* `automation/email.py` — email-ready report content
 
 ---
 
-## 🚧 Limitations
+## If I Had More Time, I’d Add...
 
-* Mainframe job triggering is simulated
-* No real-time backend integration
-* Email sending is mocked (no SMTP integration)
-
----
-
-## 🔮 Future Enhancements
-
-* 🔗 SharePoint API integration
-* 📈 Streamlit dashboard for visualization
-* ⏱️ Scheduling (cron / Airflow)
+* SharePoint API integration for automated report publishing
+* Interactive dashboard charts for AA trends
+* Scheduler support (cron / Airflow)
+* Real backend integration for authenticated data access
+* Export to PDF or SharePoint link generation
 * 🧪 Unit testing for pipeline stages
 * 📦 Containerization (Docker)
 
