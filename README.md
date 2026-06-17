@@ -45,6 +45,7 @@ CSV/TXT Upload → Ingest → Validate → Transform → Aggregate → Export �
 * **Intelligent AA transformation** — Business logic to process claims and compute metrics
 * **Real-time dashboards** — View overall AA rate, segment breakdowns, and key metrics
 * **Email automation** — Generate HTML-ready reports with one click
+* **Historical tracking** — Automatically appends daily AA metrics to historical datasets (`westmarket.xlsx`) for trend analysis
 * **Configuration-driven** — Easy customization via `config.yaml` for recipients, paths, and templates
 
 ---
@@ -137,7 +138,7 @@ claims-reporting-ui/
 │   ├── validate.py          # Schema validation and data quality checks
 │   ├── transform.py         # AA business logic and claims processing
 │   ├── aggregate.py         # Compute metrics (AA rate, LOB summaries)
-│   └── export.py            # Generate CSV/Excel reports
+│   └── export.py            # Generate Excel reports (YTD) and update historical datasets (Westmarket)
 │
 ├── automation/              # 📬 Reporting automation
 │   └── email.py             # Generate HTML email content (Outlook/SMTP ready)
@@ -174,7 +175,7 @@ claims-reporting-ui/
    - ✅ Data Validated (schema checks, required fields)
    - ✅ Data Transformed (apply AA business logic)
    - ✅ Metrics Aggregated (calculate AA rates, LOB summaries)
-   - ✅ Reports Generated (export to CSV/Excel)
+   - ✅ Reports Generated (export YTD reports with Raw Data & Segment Summary sheets, and update historical trends)
 5. **Review** — See AA rate, segment summaries, and key metrics
 6. **Share** — Generate HTML email preview or send directly
 
